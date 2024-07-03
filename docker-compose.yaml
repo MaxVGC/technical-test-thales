@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  employee-ui:
+    build:
+      context: ./employee-ui
+      dockerfile: Dockerfile
+    ports:
+      - "4000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+    depends_on:
+      - employee-app
+  
+  employee-app:
+    build:
+      context: ./employee-app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
