@@ -32,7 +32,7 @@ jobs:
     - name: Publish artifact
       uses: actions/upload-artifact@v3
       with:
-        name: my-artifact
+        name: employee-app-artifact
         path: employee-app/target/*.war
 
   release:
@@ -53,7 +53,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
-        name: my-artifact
+        name: employee-app-artifact
         path: ./artifact
 
     - name: Create GitHub Release
@@ -62,8 +62,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
 
